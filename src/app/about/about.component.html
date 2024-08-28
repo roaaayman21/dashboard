@@ -1,0 +1,11 @@
+<h2>About</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label for="description">Description:</label>
+  <textarea id="description" [(ngModel)]="about.description" name="description" required></textarea>
+
+  <label for="photo">Profile Photo:</label>
+  <input type="file" id="photo" (change)="onFileChange($event)" required>
+
+  <button type="submit">{{ editMode ? 'Update About' : 'Upload About' }}</button>
+</form>

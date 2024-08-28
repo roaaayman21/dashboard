@@ -1,0 +1,20 @@
+
+<h2>Skills</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label for="name">Skill Name:</label>
+  <input type="text" id="name" [(ngModel)]="skill.name" name="name" required>
+
+  <label for="photo">Skill Photo:</label>
+  <input type="file" id="photo" (change)="onFileChange($event)" required>
+
+  <button type="submit">{{ editMode ? 'Update Skill' : 'Upload Skill' }}</button>
+</form>
+<ul>
+  <li *ngFor="let sk of skills">
+    <p>{{ sk.name }}</p>
+    <button (click)="editSkill(sk)">Edit</button>
+    <button (click)="deleteSkill(sk._id)">Delete</button>
+  </li>
+</ul>
+
