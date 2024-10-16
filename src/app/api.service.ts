@@ -26,7 +26,7 @@ export interface About {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = 'https://portflio-backend-uiv7.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   loginAdmin(username: string, password: string): Observable<any> {
-    return this.http.post('http://localhost:5000/api/admin/login', { username, password });
+    return this.http.post('https://portflio-backend-uiv7.onrender.com/admin/login', { username, password });
   }
 
 

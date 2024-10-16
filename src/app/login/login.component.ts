@@ -19,9 +19,9 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.http.post('http://localhost:5000/user/login', loginData).subscribe(
+    this.http.post('https://portflio-backend-uiv7.onrender.com/user/login', loginData).subscribe(
       (response: any) => {
-        console.log('Login successful:', response);  
+        console.log('Login successful:', response);
         localStorage.setItem('token', response.token);
         this.router.navigate(['/dashboard']);
 
