@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-login',
@@ -10,27 +10,44 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  isLoading: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   onSubmit() {
-    const loginData = {
-      username: this.username,
-      password: this.password
-    };
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Username and password are required';
+      return;
+    }
 
-    this.http.post('https://portflio-backend-uiv7.onrender.com/user/login', loginData).subscribe(
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.apiService.loginUser(this.username, this.password).subscribe(
       (response: any) => {
         console.log('Login successful:', response);
         localStorage.setItem('token', response.token);
+        this.isLoading = false;
         this.router.navigate(['/dashboard']);
-
       },
-      (error) => {
+      (error: any) => {
         console.error('Login failed:', error);
-        alert('Login failed. Please check your username and password.');
+        this.isLoading = false;
+
+        if (error.status === 404) {
+          this.errorMessage = 'User not found. Please check your username.';
+        } else if (error.status === 400) {
+          this.errorMessage = 'Invalid credentials. Please check your username and password.';
+        } else {
+          this.errorMessage = 'Login failed. Please try again later.';
+        }
       }
     );
   }
 
+  showForgotPassword(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/forgot-password']);
+  }
 }

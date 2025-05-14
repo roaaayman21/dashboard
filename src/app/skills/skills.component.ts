@@ -152,7 +152,7 @@ export class SkillsComponent implements OnInit {
       this.apiService.deleteSkill(id).subscribe(
         () => {
           console.log('Skill deleted successfully');
-          this.fetchSkills(); 
+          this.fetchSkills();
         },
         (error: any) => {
           console.error('Error deleting skill:', error);

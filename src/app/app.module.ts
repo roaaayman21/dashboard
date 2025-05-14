@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ApiService } from './api.service';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SkillsComponent,
     AboutComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

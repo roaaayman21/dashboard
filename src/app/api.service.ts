@@ -22,6 +22,11 @@ export interface About {
   description: string;
 }
 
+export interface ResetPasswordData {
+  username: string;
+  newPassword: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,6 +43,13 @@ export class ApiService {
     return this.http.post('https://portflio-backend-uiv7.onrender.com/admin/login', { username, password });
   }
 
+  loginUser(username: string, password: string): Observable<any> {
+    return this.http.post('https://portflio-backend-uiv7.onrender.com/user/login', { username, password });
+  }
+
+  resetPassword(data: ResetPasswordData): Observable<any> {
+    return this.http.post('https://portflio-backend-uiv7.onrender.com/user/reset-password', data);
+  }
 
 
   private getAuthHeaders() {
