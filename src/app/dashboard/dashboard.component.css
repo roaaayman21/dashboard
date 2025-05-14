@@ -1,9 +1,19 @@
 .dashboard-container {
-  padding: 24px;}
-.component-card {
-  margin-bottom: 30px;
+  padding: 24px;
 }
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
 
+.component-card {
+  margin-bottom: 0;
+}
 
-
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

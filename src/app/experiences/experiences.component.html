@@ -1,0 +1,47 @@
+<div class="component-card">
+  <h2>Experience</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Job Title:</label>
+      <input type="text" id="title" [(ngModel)]="experience.title" name="title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="company">Company:</label>
+      <input type="text" id="company" [(ngModel)]="experience.company" name="company" required>
+    </div>
+
+    <div class="form-group">
+      <label for="from">From Date:</label>
+      <input type="date" id="from" [(ngModel)]="experience.from" name="from" [max]="currentDate" required>
+    </div>
+
+    <div class="form-group">
+      <label for="to">To Date (leave empty for current position):</label>
+      <input type="date" id="to" [(ngModel)]="experience.to" name="to" [max]="currentDate">
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="btn-primary">{{ editMode ? 'Update Experience' : 'Add Experience' }}</button>
+      <button type="button" class="btn-secondary" *ngIf="editMode" (click)="resetForm()">Cancel</button>
+    </div>
+  </form>
+
+  <div class="experiences-list">
+    <h3>Your Experiences</h3>
+    <ul>
+      <li *ngFor="let exp of experiences">
+        <div class="experience-info">
+          <h4>{{ exp.title }}</h4>
+          <p>{{ exp.company }}</p>
+          <p>{{ exp.from | date }} - {{ exp.to ? (exp.to | date) : 'Present' }}</p>
+        </div>
+        <div class="experience-actions">
+          <button class="btn-primary" (click)="editExperience(exp)">Edit</button>
+          <button class="btn-danger" (click)="deleteExperience(exp._id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

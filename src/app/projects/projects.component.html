@@ -1,19 +1,27 @@
 <h2>Projects</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <label for="name">Project Name:</label>
-  <input type="text" id="name" [(ngModel)]="project.name" name="name" required>
+<form (ngSubmit)="onSubmit()" class="project-form">
+  <div class="form-group">
+    <label for="name">Project Name:</label>
+    <input type="text" id="name" [(ngModel)]="project.name" name="name" required>
+  </div>
 
-  <label for="title">Project Title:</label>
-  <input type="text" id="title" [(ngModel)]="project.title" name="title" required>
+  <div class="form-group">
+    <label for="title">Project Title:</label>
+    <input type="text" id="title" [(ngModel)]="project.title" name="title" required>
+  </div>
 
-  <label for="photo">Project Photo:</label>
-  <input type="file" id="photo" (change)="onFileChange($event)" required>
+  <div class="form-group">
+    <label for="photo">Project Photo:</label>
+    <input type="file" id="photo" (change)="onFileChange($event)" required>
+  </div>
 
-  <label for="link">Project Link:</label>
-  <input type="text" id="link" [(ngModel)]="project.link" name="link" required>
+  <div class="form-group">
+    <label for="link">Project Link:</label>
+    <input type="text" id="link" [(ngModel)]="project.link" name="link" required>
+  </div>
 
-  <button type="submit">{{ editMode ? 'Update Project' : 'Upload Project' }}</button>
+  <button type="submit" class="btn-primary">{{ editMode ? 'Update Project' : 'Upload Project' }}</button>
 </form>
 
 <ul>

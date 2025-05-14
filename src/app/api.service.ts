@@ -27,6 +27,14 @@ export interface ResetPasswordData {
   newPassword: string;
 }
 
+export interface Experience {
+  _id?: string;
+  title: string;
+  company: string;
+  from: string;
+  to?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -140,5 +148,22 @@ export class ApiService {
     formData.append('description', about.description);
 
     return this.http.put(`${this.apiUrl}/about/${about._id}`, formData, this.getAuthHeaders());
+  }
+
+  // Experience methods
+  uploadExperience(experience: Experience): Observable<any> {
+    return this.http.post(`${this.apiUrl}/experiences`, experience, this.getAuthHeaders());
+  }
+
+  getExperiences(): Observable<Experience[]> {
+    return this.http.get<Experience[]>(`${this.apiUrl}/experiences`, this.getAuthHeaders());
+  }
+
+  updateExperience(experience: Experience): Observable<any> {
+    return this.http.put(`${this.apiUrl}/experiences/${experience._id}`, experience, this.getAuthHeaders());
+  }
+
+  deleteExperience(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/experiences/${id}`, this.getAuthHeaders());
   }
 }
